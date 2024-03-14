@@ -4,7 +4,7 @@
  
 // Inclure le fichier de connexion à la base de données
  include './includes/db_connect.php';
-echo 'correct';
+
 // Endpoint pour récupérer un utilisateur par son ID
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     // Récupérer l'ID de l'utilisateur à partir de la requête GET
@@ -29,5 +29,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     }
 }
  
+// Endpoint pour récupérer tous les utilisateurs
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    // Exécuter une requête SQL pour récupérer toutes les données des utilisateurs
+    $query = "SELECT * FROM users";
+    $statement = $pdo->query($query);
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    // Retourner les données de tous les utilisateurs au format JSON
+    http_response_code(200);
+    header('Content-Type: application/json');
+    echo json_encode($users);
+}
 
 ?>
