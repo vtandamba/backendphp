@@ -3,7 +3,7 @@
 echo 'hi';
  
 // Inclure le fichier de connexion à la base de données
-include './includes/db_connect.php';
+// include './includes/db_connect.php';
 echo 'correct';
 // Endpoint pour récupérer un utilisateur par son ID
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
