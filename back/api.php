@@ -1,6 +1,6 @@
 <?php
 // fichier api.php qui servira de point d'entrée pour notre API.
-
+echo 'hi';
  
 // Inclure le fichier de connexion à la base de données
 include 'includes/db_connect.php';
