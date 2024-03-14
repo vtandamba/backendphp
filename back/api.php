@@ -4,6 +4,30 @@
  
 // Inclure le fichier de connexion à la base de données
  include './includes/db_connect.php';
+/**
+ * les entetes 
+ * -----------  Problemes rencontré : 
+ * Le message d'erreur indique que vous faites face à
+ * un problème lié à la politique de même origine (Same Origin Policy) et 
+ * aux en-têtes CORS (Cross-Origin Resource Sharing) manquants. 
+ * Cela se produit lorsque vous essayez de faire une requête depuis un 
+ * domaine différent de celui de votre API, et que le serveur de l'API ne 
+ * renvoie pas les en-têtes CORS nécessaires pour permettre à votre 
+ * application frontale d'accéder à l'API.
+ * 
+ * ---------   solution*
+ * */
+// Permettre l'accès depuis n'importe quel domaine
+header('Access-Control-Allow-Origin: *');
+
+// Permettre les méthodes GET et OPTIONS
+header('Access-Control-Allow-Methods: GET, OPTIONS');
+
+// Autoriser les en-têtes spécifiques dans la requête
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+
+
+
 
 // Endpoint pour récupérer un utilisateur par son ID
 // if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
