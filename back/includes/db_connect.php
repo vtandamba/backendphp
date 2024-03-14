@@ -7,7 +7,8 @@ echo 'its works';
  * __DIR__ est une constante magique en PHP qui représente le chemin absolu
  *  du répertoire du fichier dans lequel elle est utilisée
  */
-$db_file = __DIR__ . '../db.sqlite';
+$db_file = __DIR__ . '/../db.sqlite';
+
 
 try {
     // Connexion à la base de données SQLite avec PDO
