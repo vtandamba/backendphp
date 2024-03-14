@@ -1,7 +1,7 @@
 <?php
 // Chemin vers votre fichier de base de données SQLite
 
-echo 'its works';
+// echo 'its works';
 
 /**
  * __DIR__ est une constante magique en PHP qui représente le chemin absolu
