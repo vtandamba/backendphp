@@ -47,15 +47,19 @@ const UserForm = () => {
             })
             .then(data => {
               console.log('Données persistées avec succès:', data);
+              
             })
             .catch(error => {
               console.error('Erreur lors de la persistance des données:', error);
             });
         }
       })
+    
       .catch(error => {
         console.error('Erreur:', error);
       });
+
+
   }
 
 

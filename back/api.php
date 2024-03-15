@@ -64,6 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     http_response_code(200);
     header('Content-Type: application/json');
     echo json_encode($users);
+} else {
+    echo json_encode(['message' => "post"]);
 }
 
 ?>
