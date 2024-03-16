@@ -72,11 +72,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 // Endpoint pour ajouter un utilisateur
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Vérifier si les données sont valides
-    if (!isset($data['name']) || !isset($data['email'])) {
-        http_response_code(400);
-        echo json_encode(array('message' => 'Paramètres manquants'));
-        exit;
+      // Récupérer les données de l'utilisateur à partir du corps de la requête POST
+      $data = json_decode(file_get_contents("php://input"), true);
+
+      // Vérifier si les données sont valides
+      if (!isset($data['name']) || !isset($data['email'])) {
+          http_response_code(400);
+          echo json_encode(array('message' => 'Paramètres manquants'));
+          exit;
+      
     } else {
         $name = $data['name'];
         $email = $data['email'];
