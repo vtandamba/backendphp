@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 // Endpoint pour ajouter un utilisateur
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérifier si les données sont valides
-    if (empty($_POST['name']) || empty($_POST['email'])) {
+    if (!isset($_POST['name']) || !isset($_POST['email'])) {
         http_response_code(400);
         echo json_encode(array('message' => 'Paramètres manquants'));
         exit;
