@@ -68,4 +68,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     echo json_encode(['message' => "post"]);
 }
 
+ 
+
+// Endpoint pour ajouter un utilisateur
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Récupérer les données de l'utilisateur à partir du corps de la requête POST
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    // Vérifier si les données sont valides
+    if (!isset($data['name']) || !isset($data['email'])) {
+        http_response_code(400);
+        echo json_encode(array('message' => 'Paramètres manquants'));
+        exit;
+    }
+
+    // Insérer les données de l'utilisateur dans la base de données
+    $query = "INSERT INTO users (name, email) VALUES (:name, :email)";
+    $statement = $pdo->prepare($query);
+    $success = $statement->execute(array(
+        'name' => $data['name'],
+        'email' => $data['email']
+    ));
+
+    // Vérifier si l'insertion a réussi
+    if ($success) {
+        // Retourner un message de succès
+        http_response_code(201); // Code 201 pour création réussie
+        echo json_encode(array('message' => 'Utilisateur ajouté avec succès'));
+    } else {
+        // Retourner une erreur si l'insertion a échoué
+        http_response_code(500); // Code 500 pour erreur interne du serveur
+        echo json_encode(array('message' => 'Erreur lors de l\'ajout de l\'utilisateur'));
+    }
+}
+
 ?>
