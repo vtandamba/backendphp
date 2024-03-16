@@ -73,7 +73,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 // Endpoint pour ajouter un utilisateur
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       // Récupérer les données de l'utilisateur à partir du corps de la requête POST
-    //  $_POST = json_decode(file_get_contents("php://input"), true);
+      $_POST = json_decode(file_get_contents("php://input"), true);
+    /**
+       * Lorsque vous utilisez json_decode(file_get_contents("php://input"), true), 
+       * vous récupérez les données envoyées dans le corps de la requête HTTP au format JSON. 
+       * Cette méthode est utilisée lorsque vous envoyez des données au format JSON depuis un 
+       * client, comme dans le cas d'une requête AJAX ou d'une soumission de formulaire via 
+       * JavaScript.
+       * Si vous n'ajoutez pas cette ligne, PHP ne saura pas comment extraire les 
+       * données envoyées dans le corps de la requête. Par conséquent, $_POST restera vide, car il
+       * est destiné à contenir les données envoyées via le corps d'une requête HTTP en utilisant le format de contenu application/x-www-form-urlencoded (par exemple, les données d'un formulaire HTML standard).
+       * En résumé, si vous utilisez json_decode(file_get_contents("php://input"),
+       * true) pour récupérer les données JSON, vous n'avez pas besoin d'utiliser $_POST. Si vous
+       * envoyez des données au format application/x-www-form-urlencoded, alors $_POST sera 
+       * automatiquement rempli avec ces données et vous n'aurez pas besoin de json_decode(). 
+       */
 
       // Vérifier si les données sont valides
       if (!isset($_POST['name']) || !isset($_POST['email'])) {
