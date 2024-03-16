@@ -3,7 +3,7 @@
 // echo 'hi';
  
 // Inclure le fichier de connexion à la base de données
- include '../includes/db_connect.php';
+ include './includes/db_connect.php';
 /**
  * les entetes 
  * -----------  Problemes rencontré : 
